@@ -1,0 +1,68 @@
+﻿<!-- 促销活动 -->
+<section class="page-header overlay-gradient" style="background-image: url(/images/绿色.jpg);">
+    <div class="container">
+        <div class="inner">
+            <h2 class="title">促销活动</h2>
+            <ol class="breadcrumb">
+                <li>
+                    @ViewData["NTypes"]
+                </li>
+                <li><a href="~/Home">返回首页</a></li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section id="news-items" class="blog-page">
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-sm-12">
+                @if (@ViewData["News"] != null)
+                {
+                    @foreach (var item in @ViewData["News"] as IEnumerable<News>)
+                    {
+                        <article class="blog-post">
+                            <div class="blog-thumb">
+                                <a href="#" class="post-img hover-link">
+                                    <img src=@string.Format("/images/{0}",@item.PhotoUrl) alt="">
+                                </a>
+                            </div>
+                            <div class="post-content">
+                                <h3 class="title">
+                                    <a href="#">
+                                        @item.Title
+                                    </a>
+                                </h3>
+                                <ul class="post-meta">
+                                    <li>@item.PushTime.ToString().Substring(0,8)</li>
+                                    <li><a href="#">@ViewData["NTypes"]</a></li>
+                                </ul>
+                            </div>
+                        </article>
+                    }
+                }
+            </div>
+        </div>
+
+        <nav aria-label="Page navigation" id="paging">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="#" class="active">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</section>
+

@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewData["Title"] = "商品管理";
+}
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    <a class="layui-btn lafite_main_color" asp-controller="Home" asp-action="AddGoods"><i class="layui-icon"></i>上架新商品</a>
+                </div>
+                <div class="layui-card-body layui-table-body layui-table-main">
+                    <table class="layui-table layui-form">
+                        <thead>
+                            <tr>
+                                <th>商品名</th>
+                                <th>市场价格</th>
+                                <th>本站价格</th>
+                                <th>图片</th>
+                                <th>库存</th>
+                                <th>分类名</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Title</td>
+                                    <td>&yen;&nbsp;@item.MarketPrice.ToString("#0.00")</td>
+                                    <td>&yen;&nbsp;@item.Price.ToString("#0.00")</td>
+                                    <td>
+                                        @{
+                                            bool temp = true;
+                                            @foreach (var pic in item.Photo)
+                                            {
+                                                @if (temp)
+                                                {
+                                                     <img src=@string.Format("/images/{0}",@pic.PhotoUrl) />
+                                                    temp = false;
+                                                }                                                
+                                            }
+                                        }
+                                    </td>
+                                    <td>@item.Stock</td>
+                                    <td>@item.Category.CateName </td>
+                                    <td class="td-manage lafite_table_a_blue">
+                                        <a title="编辑" class="" href="/Home/EditGoods?ProductId=@item.ProductId">
+                                            编辑
+                                        </a>
+                                        <a class="lafite_margin_left_10px" href="/Home/GoodsPic?ProductId=@item.ProductId&Title=@item.Title" title="管理图片">
+                                            <span>管理图片</span>
+                                        </a>
+                                        <a class="lafite_margin_left_10px" title="详情" href="/Home/GoodsInfo?ProductId=@item.ProductId">
+                                            详情
+                                        </a>
+                                        <a class="lafite_margin_left_10px" title="删除" href="/Home/DeleteGoods?ProductId=@item.ProductId">
+                                            下架
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            }
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <nav aria-label="Page navigation" id="page">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+

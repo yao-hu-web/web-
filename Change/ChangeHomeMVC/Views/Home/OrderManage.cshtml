@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "订单管理";
+}
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+
+                <div class="layui-card-body layui-table-body layui-table-main">
+
+                    <label class="radio-inline">
+                        <a href="/Home/OrderManage"><input type="radio" name="inlineRadioOptions" @(@ViewBag.States.ToString() =="-1" ? "checked":"") onchange="checkItem(this)" value="-1">全部</a>
+                    </label>
+                    <label class="radio-inline">
+                        <a href="/Home/OrderManage?States=0"><input type="radio" name="inlineRadioOptions" @(@ViewBag.States.ToString() =="0" ? "checked":"") onchange="checkItem(this)" value="0">未付款</a>
+                    </label>
+                    <label class="radio-inline">
+                        <a href="/Home/OrderManage?States=1"><input type="radio" name="inlineRadioOptions" @(@ViewBag.States.ToString() =="1" ? "checked":"") onchange="checkItem(this)" value="1">已付款</a>
+                    </label>
+                    <label class="radio-inline">
+                        <a href="/Home/OrderManage?States=2"><input type="radio" name="inlineRadioOptions" @(@ViewBag.States.ToString() =="2" ? "checked":"") onchange="checkItem(this)" value="2">已发货</a>
+                    </label>
+                    <label class="radio-inline">
+                        <a href="/Home/OrderManage?States=3"><input type="radio" name="inlineRadioOptions" @(@ViewBag.States.ToString() =="3" ? "checked":"") onchange="checkItem(this)" value="3">已收货</a>
+                    </label>
+                    <label class="radio-inline">
+                        <a href="/Home/OrderManage?States=4"><input type="radio" name="inlineRadioOptions" @(@ViewBag.States.ToString() =="4" ? "checked":"") onchange="checkItem(this)" value="4">已评价</a>
+                    </label>
+                    <table class="layui-table layui-form">
+                        <thead>
+                            <tr>
+                                <th>订单号</th>
+                                <th>下单日期</th>
+                                <th>订单总额</th>
+                                <th>收货日期</th>
+                                <th>订单状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.OrdersId</td>
+                                    <td>@item.Orderdate</td>
+                                    <td>&yen;&nbsp;@item.Total.ToString("#0.00")</td>
+                                    @if (@item.States == 3)
+                                    {
+                                        <td>@item.DeliveryDate</td>
+                                    }
+                                    else
+                                    {
+                                        <td>--</td>
+                                    }
+
+                                    @if (@item.States == 1)
+                                    {
+                                        <td>已付款</td>
+                                    }
+                                    else if (@item.States == 2)
+                                    {
+                                        <td>已发货</td>
+                                    }
+                                    else if (@item.States == 3)
+                                    {
+                                        <td>已收货</td>
+                                    }
+                                    else if (@item.States == 4)
+                                    {
+                                        <td>已评价</td>
+                                    }
+                                    else
+                                    {
+                                        <td>未付款</td>
+                                    }
+                                    <td class="td-manage lafite_table_a_blue">
+                                        <a class="lafite_margin_left_10px" title="详情" href="/Home/OrderDetail?OrdersId=@item.OrdersId">
+                                            详情
+                                        </a>
+                                        @if (@item.States == 1)
+                                        {
+                                            <a class="lafite_margin_left_10px" title="发货" href="/Home/Shipments?OrdersId=@item.OrdersId">
+                                                发货
+                                            </a>
+                                        }
+                                        @if (@item.States == 0)
+                                        {
+                                            <a class="lafite_margin_left_10px" title="删除订单" href="/Home/DeleteOrder?OrdersId=@item.OrdersId">
+                                                删除订单
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <nav aria-label="Page navigation" id="page">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        function checkItem(obj) {
+            window.location.href = "/Home/OrderManage?States="+obj.value;
+        }
+    </script>
+}

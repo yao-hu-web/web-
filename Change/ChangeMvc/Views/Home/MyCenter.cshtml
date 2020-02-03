@@ -1,0 +1,627 @@
+﻿<div class="site-content">
+    <main class="site-main  main-container no-sidebar">
+        <div class="container">
+            <div class="breadcrumb-trail breadcrumbs">
+                <ul class="trail-items breadcrumb">
+                    <li class="trail-item trail-begin">
+                        <a href="~/Home">首页</a>
+                    </li>
+                    <li class="trail-item trail-end active">
+                        个人中心
+                    </li>
+                </ul>
+            </div>
+
+            <div class="navbar navbar-default" role="navigation" id="nav">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse"
+                            data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse navbar-responsive-collapse">
+                    <nav class="details-nav nav nav-tabs col-xs-12 navbar-nav">
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a href="#my" class="nav-item is-active" active-color="blue"
+                                   data-toggle="tab">我的Change</a>
+                            </li>
+                            <li>
+                                <a href="#userinfo" class="nav-item" active-color="blue" data-toggle="tab">个人资料</a>
+                            </li>
+                            <li>
+                                <a href="#address" class="nav-item" active-color="blue" data-toggle="tab">收货地址</a>
+                            </li>
+                            <li>
+                                <a href="#order" class="nav-item" active-color="blue" data-toggle="tab">我的订单</a>
+                            </li>
+                            <li>
+                                <a href="#evaluate" class="nav-item" active-color="blue" data-toggle="tab">评价管理</a>
+                            </li>
+                            <li>
+                                <a href="#collection" class="nav-item" active-color="blue" data-toggle="tab">收藏夹</a>
+                            </li>
+                            <li>
+                                <a href="#password" class="nav-item" active-color="blue" data-toggle="tab">修改密码</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="myTabContent" class="tab-content moreinfo">
+                <div id="my" class="tab-pane fade in active">
+                    <div class="row">
+                        <div class="main-content-cart main-content col-sm-12">
+                            <h3 class="custom_blog_title">
+                                <i class="fa fa-tags"></i>&nbsp;&nbsp;未付款订单
+                            </h3>
+                            <div class="page-main-content">
+                                <div class="shoppingcart-content">
+                                    <form action="#" class="cart-form">
+                                        <table class="shop_table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="product-remove"></th>
+                                                    <th class="product-thumbnail"></th>
+                                                    <th class="product-name"></th>
+                                                    <th class="product-price"></th>
+                                                    <th class="product-quantity"></th>
+                                                    <th class="product-subtotal"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in @ViewData["Orders0"] as IEnumerable<Orders>)
+                                                {
+                                                    <tr class="cart_item">
+                                                        <td class="product-see">
+                                                            <a href="~/Car/OrderPay?OrdersId=@item.OrdersId" class="remove">支付</a> <a href="#" class="remove">删除</a>
+                                                        </td>
+                                                        <td class="product-name" data-title="Product">
+                                                            <a href="#" class="title1"><span>订单编号:</span>@item.OrdersId</a>
+                                                        </td>
+                                                        <td class="product-name" data-title="Product">
+                                                            <a href="#" class="timer"><span>@item.Orderdate</span></a>
+                                                        </td>
+                                                        <td class="product-name" data-title="Product">
+                                                            <a href="#" class="price1"><span>&yen;@item.Total</span></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-content-cart main-content col-sm-12">
+                            <h3 class="custom_blog_title">
+                                <i class="fa fa-tags"></i>&nbsp;&nbsp;未发货订单
+                            </h3>
+                            <div class="page-main-content">
+                                <div class="shoppingcart-content">
+                                    <form action="#" class="cart-form">
+                                        <table class="shop_table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="product-remove"></th>
+                                                    <th class="product-thumbnail"></th>
+                                                    <th class="product-name"></th>
+                                                    <th class="product-price"></th>
+                                                    <th class="product-quantity"></th>
+                                                    <th class="product-subtotal"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in @ViewData["Orders1"] as IEnumerable<Orders>)
+                                                {
+                                                    <tr class="cart_item">
+                                                        <td class="product-see">
+                                                            <a href="#" class="remove">查看</a>
+                                                        </td>
+                                                        <td class="product-name" data-title="Product">
+                                                            <a href="#" class="title1"><span>订单编号:</span>@item.OrdersId</a>
+                                                        </td>
+                                                        <td class="product-name" data-title="Product">
+                                                            <a href="#" class="timer"><span>@item.Orderdate</span></a>
+                                                        </td>
+                                                        <td class="product-name" data-title="Product">
+                                                            <a href="#" class="price1"><span>&yen;@item.Total</span></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-content-cart main-content col-sm-12">
+                            <h3 class="custom_blog_title">
+                                <i class="fa fa-tags"></i>&nbsp;&nbsp;未收货订单
+                            </h3>
+                            <div class="page-main-content">
+                                <div class="shoppingcart-content">
+                                    <form action="#" class="cart-form">
+                                        <table class="shop_table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="product-remove"></th>
+                                                    <th class="product-thumbnail"></th>
+                                                    <th class="product-name"></th>
+                                                    <th class="product-price"></th>
+                                                    <th class="product-quantity"></th>
+                                                    <th class="product-subtotal"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in @ViewData["Orders2"] as IEnumerable<Orders>)
+                                                {
+                                                    <tr class="cart_item">
+                                                        <td class="product-see">                   
+                                                            <a href="~/Car/ReceiveGoods?OrdersId=@item.OrdersId" class="remove">确认收货</a>
+                                                        </td>
+                                                        <td class="product-name" data-title="Product">
+                                                            <a href="#" class="title1"><span>订单编号:</span>@item.OrdersId</a>
+                                                        </td>
+                                                        <td class="product-name" data-title="Product">
+                                                            <a href="#" class="timer"><span>@item.Orderdate</span></a>
+                                                        </td>
+                                                        <td class="product-name" data-title="Product">
+                                                            <a href="#" class="price1"><span>&yen;@item.Total</span></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="userinfo" class="tab-pane fade">
+                    <div class="row">
+                        <div class="content-area col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="site-main">
+                                <h3 class="custom_blog_title">
+                                    <i class="fa fa-user-o"></i>&nbsp;&nbsp;个人资料
+                                </h3>
+                                <div class="customer_info">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="info-item">
+                                                <h5 class="title-info">我的资料</h5>
+                                                <form class="register">
+                                                    <input type="text" name="UsersId" style="display:none" value="@ViewBag.User.UsersId" />
+                                                    <p class="form-row form-row-wide">
+                                                        <label class="text">登录名</label>
+                                                        <input title="登录名" type="text" class="input-text" name="UserName" value="@ViewBag.User.UserName" readonly>
+                                                    </p>
+                                                    <p class="form-row form-row-wide">
+                                                        <label class="text">邮箱</label>
+                                                        <input title="邮箱" type="email" class="input-text" name="Email" value="@ViewBag.User.Email">
+                                                    </p>
+                                                    <p class="form-row form-row-wide">
+                                                        <label class="text">昵称</label>
+                                                        <input title="昵称" type="text" class="input-text" name="Nick" value="@ViewBag.User.Nick">
+                                                    </p>
+                                                    <p class="">
+                                                        <input type="submit" class="button-submit" value="保存">
+                                                    </p>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="address" class="tab-pane fade">
+                    <div class="row">
+                        <div class="content-area col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="site-main">
+                                <h3 class="custom_blog_title">
+                                    <i class="fa fa-truck"></i>&nbsp;&nbsp;收货地址
+                                </h3>
+                                <div class="customer_info">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="info-item">
+                                                <h5 class="title-info">收货地址信息</h5>
+                                                <form class="register">
+                                                    <p class="form-row form-row-wide">
+                                                        <label class="text">收件人姓名</label>
+                                                        <input title="收件人姓名" type="text" class="input-text">
+                                                    </p>
+                                                    <p class="form-row form-row-wide">
+                                                        <label class="text">详细地址</label>
+                                                        <input title="详细地址" type="email" class="input-text">
+                                                    </p>
+                                                    <p class="form-row form-row-wide">
+                                                        <label class="text">手机号</label>
+                                                        <input title="手机号" type="text" class="input-text">
+                                                    </p>
+                                                    <p class="">
+                                                        <input type="submit" class="button-submit" value="新增">
+                                                    </p>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 add">
+                                            
+                                            <ul class="list-group-add">
+                                                <li class="list-group-item active">收货地址</li>
+                                                @foreach (var item in @ViewData["Delivery"] as IEnumerable<Delivery>)
+                                                {
+                                            <li class="list-group-item">
+                                                <a href="#" class="pull-right" title="删除"><i class="iconfont">&#xe69d;</i></a>
+                                                <a href="#" class="pull-right" title="设为默认"><i class="iconfont">&#xe69e;</i></a>
+                                                <span class="username">@item.Consignee</span><span class="phone">@item.Phone</span><span class="address">@item.Complete</span>
+                                            </li>
+                                                 }
+                                            </ul>
+                                           
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="order" class="tab-pane fade">
+                    <div class="row">
+                        <div class="main-content-cart main-content col-sm-12">
+                            <h3 class="custom_blog_title">
+                                <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;我的订单
+                            </h3>
+                            <div class="page-main-content">
+                                <div class="shoppingcart-content">
+                                    <form action="#" class="cart-form">
+                                        <table class="shop_table">
+                                            <thead>
+                                                <tr>
+                                                    <strong class="order-number">订单号:1234564456/2020-1-20</strong>
+                                                    <span class="pull-right order-button"><a href="#">查看订单</a></span>
+                                                    <hr>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="cart_item">
+                                                    <td class="product-remove">
+                                                        <a href="#" class="remove">已付款</a>
+                                                    </td>
+                                                    <td class="product-thumbnail">
+                                                        <a href="#">
+                                                            <img src="images/衣服1.jpg" alt="img"
+                                                                 class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
+                                                        </a>
+                                                    </td>
+                                                    <td class="product-name" data-title="Product">
+                                                        <a href="#" class="title">印花情侣卫衣女春秋薄款宽松学生BF风圆领T恤衫</a>
+                                                        <span class="attributes-select attributes-color">粉色</span>
+                                                        <span class="attributes-select attributes-size">S</span>
+                                                    </td>
+                                                    <td class="product-piece" data-title="Price">
+                                                        <span class="piece">2件</span>
+                                                    </td>
+                                                    <td class="product-price" data-title="Price">
+                                                        <span class="woocommerce-Price-amount amount">
+                                                            <span class="woocommerce-Price-currencySymbol">
+                                                                &yen;
+                                                            </span>
+                                                            45
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                    <form action="#" class="cart-form">
+                                        <table class="shop_table">
+                                            <thead>
+                                                <tr>
+                                                    <strong class="order-number">订单号:1234564456/2020-1-20</strong>
+                                                    <span class="pull-right order-button"><a href="#">确认订单</a></span>
+                                                    <hr>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="cart_item">
+                                                    <td class="product-remove">
+                                                        <a href="#" class="remove">已发货</a>
+                                                    </td>
+                                                    <td class="product-thumbnail">
+                                                        <a href="#">
+                                                            <img src="images/衣服1.jpg" alt="img"
+                                                                 class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
+                                                        </a>
+                                                    </td>
+                                                    <td class="product-name" data-title="Product">
+                                                        <a href="#" class="title">印花情侣卫衣女春秋薄款宽松学生BF风圆领T恤衫</a>
+                                                        <span class="attributes-select attributes-color">粉色</span>
+                                                        <span class="attributes-select attributes-size">S</span>
+                                                    </td>
+                                                    <td class="product-piece" data-title="Price">
+                                                        <span class="piece">2件</span>
+                                                    </td>
+                                                    <td class="product-price" data-title="Price">
+                                                        <span class="woocommerce-Price-amount amount">
+                                                            <span class="woocommerce-Price-currencySymbol">
+                                                                &yen;
+                                                            </span>
+                                                            45
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                    <form action="#" class="cart-form">
+                                        <table class="shop_table">
+                                            <thead>
+                                                <tr>
+                                                    <strong class="order-number">订单号:1234564456/2020-1-20</strong>
+                                                    <span class="pull-right order-button"><a href="#">去评价</a></span>
+                                                    <hr>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="cart_item">
+                                                    <td class="product-remove">
+                                                        <a href="#" class="remove">已收货</a>
+                                                    </td>
+                                                    <td class="product-thumbnail">
+                                                        <a href="#">
+                                                            <img src="images/衣服1.jpg" alt="img"
+                                                                 class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
+                                                        </a>
+                                                    </td>
+                                                    <td class="product-name" data-title="Product">
+                                                        <a href="#" class="title">印花情侣卫衣女春秋薄款宽松学生BF风圆领T恤衫</a>
+                                                        <span class="attributes-select attributes-color">粉色</span>
+                                                        <span class="attributes-select attributes-size">S</span>
+                                                    </td>
+                                                    <td class="product-piece" data-title="Price">
+                                                        <span class="piece">2件</span>
+                                                    </td>
+                                                    <td class="product-price" data-title="Price">
+                                                        <span class="woocommerce-Price-amount amount">
+                                                            <span class="woocommerce-Price-currencySymbol">
+                                                                &yen;
+                                                            </span>
+                                                            45
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                    <form action="#" class="cart-form">
+                                        <table class="shop_table">
+                                            <thead>
+                                                <tr>
+                                                    <strong class="order-number">订单号:1234564456/2020-1-20</strong>
+                                                    <span class="pull-right order-button"><a href="#">去付款</a></span>
+                                                    <hr>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="cart_item">
+                                                    <td class="product-remove">
+                                                        <a href="#" class="remove">未付款</a>
+                                                    </td>
+                                                    <td class="product-thumbnail">
+                                                        <a href="#">
+                                                            <img src="images/衣服1.jpg" alt="img"
+                                                                 class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
+                                                        </a>
+                                                    </td>
+                                                    <td class="product-name" data-title="Product">
+                                                        <a href="#" class="title">印花情侣卫衣女春秋薄款宽松学生BF风圆领T恤衫</a>
+                                                        <span class="attributes-select attributes-color">粉色</span>
+                                                        <span class="attributes-select attributes-size">S</span>
+                                                    </td>
+                                                    <td class="product-piece" data-title="Price">
+                                                        <span class="piece">2件</span>
+                                                    </td>
+                                                    <td class="product-price" data-title="Price">
+                                                        <span class="woocommerce-Price-amount amount">
+                                                            <span class="woocommerce-Price-currencySymbol">
+                                                                &yen;
+                                                            </span>
+                                                            45
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tbody>
+                                                <tr class="cart_item">
+                                                    <td class="product-remove">
+                                                        <a href="#" class="remove">未付款</a>
+                                                    </td>
+                                                    <td class="product-thumbnail">
+                                                        <a href="#">
+                                                            <img src="images/衣服1.jpg" alt="img"
+                                                                 class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
+                                                        </a>
+                                                    </td>
+                                                    <td class="product-name" data-title="Product">
+                                                        <a href="#" class="title">印花情侣卫衣女春秋薄款宽松学生BF风圆领T恤衫</a>
+                                                        <span class="attributes-select attributes-color">粉色</span>
+                                                        <span class="attributes-select attributes-size">S</span>
+                                                    </td>
+                                                    <td class="product-piece" data-title="Price">
+                                                        <span class="piece">2件</span>
+                                                    </td>
+                                                    <td class="product-price" data-title="Price">
+                                                        <span class="woocommerce-Price-amount amount">
+                                                            <span class="woocommerce-Price-currencySymbol">
+                                                                &yen;
+                                                            </span>
+                                                            45
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="evaluate" class="tab-pane fade">
+                    <div class="row">
+                        <div class="main-content-cart main-content col-sm-12">
+                            <h3 class="custom_blog_title">
+                                <i class="fa fa-bookmark"></i>&nbsp;&nbsp;评价管理
+                            </h3>
+                            <div class="page-main-content">
+                                <div class="shoppingcart-content">
+                                    <form action="#">
+                                        <table class="layui-table layui-form">
+                                            <thead>
+                                                <tr>
+                                                    <th>商品名称</th>
+                                                    <th>评价等级</th>
+                                                    <th>评价内容</th>
+                                                    <th>评价时间</th>
+                                                    <th>登录名</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in @ViewData["Appraise"] as IEnumerable<Appraise>)
+                                                {
+                                                    <tr>
+                                                        <input type="text" name="AppraiseId" style="display:none" value="@item.AppraiseId" />
+                                                        <td>@item.ProductId</td>
+                                                        <td>
+                                                            @if (@item.Grade == 0)
+                                                            {
+                                                                <span>好评</span>
+                                                            }
+                                                            else if (@item.Grade == 1)
+                                                            {
+                                                                <span>中评</span>
+                                                            }
+                                                            else if(@item.Grade==2){
+                                                            <span>差评</span>
+                                                            }
+                                                            else
+                                                            {
+                                                            <span>一般</span>
+                                                            }
+                                                        </td>
+                                                        <td>@item.Content</td>
+                                                        <td>@item.RateTime</td>
+                                                        <td>@ViewBag.User.UserName</td>
+                                                        <td class="td-manage">
+                                                            <a href="#">编辑</a>
+                                                            <a href="#">详情</a>
+                                                            <a href="#">删除</a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="collection" class="tab-pane fade">
+                    <div class="row">
+                        <div class="main-content-cart main-content col-sm-12">
+                            <h3 class="custom_blog_title">
+                                <i class="fa fa-folder-open"></i>&nbsp;&nbsp;收藏夹
+                            </h3>
+                            <div class="page-main-content">
+                                <div class="shoppingcart-content">
+                                    <form action="#" class="cart-form">
+                                        <table class="shop_table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="product-remove"></th>
+                                                    <th class="product-thumbnail"></th>
+                                                    <th class="product-name"></th>
+                                                    <th class="product-price"></th>
+                                                    <th class="product-quantity"></th>
+                                                    <th class="product-subtotal"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="cart_item">
+                                                    <td class="product-remove">
+                                                        <a href="#" class="remove"><i class="iconfont">&#xe69d;</i></a>
+                                                    </td>
+                                                    <td class="product-thumbnail">
+                                                        <a href="#">
+                                                            <img src="/images/衣服1.jpg" alt="img"
+                                                                 class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
+                                                        </a>
+                                                    </td>
+                                                    <td class="product-name" data-title="Product">
+                                                        <a href="#" class="title">印花情侣卫衣女春秋薄款宽松学生BF风圆领T恤衫</a>
+                                                    </td>
+                                                </tr>                                    
+                                                
+                                            </tbody>
+                                        </table>
+                                    </form>                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="password" class="tab-pane fade">
+                    <div class="row">
+                        <div class="content-area col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="site-main">
+                                <h3 class="custom_blog_title">
+                                    <i class="fa fa-expeditedssl"></i>&nbsp;&nbsp;修改密码
+                                </h3>
+                                <div class="customer_info">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="info-item">
+                                                <h5 class="title-info">密码信息</h5>
+                                                <form class="register">
+                                                    <p class="form-row form-row-wide">
+                                                        <label class="text">原密码</label>
+                                                        <input title="原密码" type="password" class="input-text">
+                                                    </p>
+                                                    <p class="form-row form-row-wide">
+                                                        <label class="text">新密码</label>
+                                                        <input title="新密码" type="password" class="input-text">
+                                                    </p>
+                                                    <p class="form-row form-row-wide">
+                                                        <label class="text">确认密码</label>
+                                                        <input title="确认密码" type="password" class="input-text">
+                                                    </p>
+                                                    <p class="">
+                                                        <input type="submit" class="button-submit" value="确认修改">
+                                                    </p>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

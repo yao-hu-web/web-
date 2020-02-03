@@ -1,0 +1,69 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<section class="page-header overlay-gradient" style="background-image: url(/images/黄色.jpg);">
+    <div class="container">
+        <div class="inner">
+            <h2 class="title">查找商品</h2>
+            <ol class="breadcrumb">
+                <li>
+                    @ViewBag.CategoryName
+                </li>
+                <li><a href="~/Home">返回首页</a></li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="dity" id="list">
+    <div class="container">
+        <div class="row ry">
+            @foreach (var item in Model)
+            {
+                <a href=@string.Format("/Home/ProductInfo?ProductId={0}",@item.ProductId)>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 ">
+                        <div class="clothing-box">
+                            <div class="listing-container">
+                                <div class="listing-image">
+                                    @if (Model.GetType().FullName.IndexOf("HomeInfo") != -1)
+                                    {
+                                        <img src=@string.Format("/images/{0}",@item.PhotoUrl) alt="">
+                                    }
+                                    else
+                                    {
+                                        @foreach (var i in @item.Photo)
+                                        {
+                                            <img src=@string.Format("/images/{0}",@i.PhotoUrl) alt="">
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price"><span class="shangyin">￥@item.Price.ToString("#0.00") &nbsp; @item.Title</span></div>
+                    </div>
+                </a>
+
+            }
+        </div>
+        <nav aria-label="Page navigation" id="paging">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="#" class="active">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</section>
+

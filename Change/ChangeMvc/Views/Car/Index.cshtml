@@ -1,0 +1,102 @@
+﻿
+
+
+
+<div class="site-content">
+    <main class="site-main  main-container no-sidebar">
+        <div class="container">
+            <div class="breadcrumb-trail breadcrumbs">
+                <ul class="trail-items breadcrumb">
+                    <li class="trail-item trail-begin">
+                        <a href="~/Home">首页</a>
+                    </li>
+                    <li class="trail-item trail-end active">
+                        购物车
+                    </li>
+                </ul>
+            </div>
+
+            <div id="seat-1">
+                <div class="container">
+                    <div class="row">
+                        <ul id="progressbar">
+                            <li class="active">我的购物车</li>
+                            <li class="">填写核对订单信息</li>
+                            <li class="">成功提交订单</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="main-content-cart main-content col-sm-12" id="shopping-cart">
+                    <div class="page-main-content">
+                        <div class="shoppingcart-content">
+                            <form action="~/Car/CheckOrderInfo" class="cart-form" method="post"> 
+                                <table class="shop_table">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-remove"></th>
+                                            <th class="product-thumbnail"></th>
+                                            <th class="product-name"></th>
+                                            <th class="product-price"></th>
+                                            <th class="product-quantity"></th>
+                                            <th class="product-subtotal"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr class="cart_item">
+                                                <input type="text" name="ProductId" style="display:none" value="@item.ProductId" />
+                                                <td class="product-remove">
+                                                    <a href=@string.Format("/Car/Delete/{0}",@item.ProductId) class="remove"><i class="iconfont">&#xe69d;</i></a>@*删除商品*@
+                                                </td>
+                                                <td class="product-thumbnail">
+                                                    <a href="#">
+                                                        <img src=@string.Format("/images/{0}",@item.PhotoUrl) alt="img"
+                                                             class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
+                                                        <input type="text" name="PhotoUrl" style="display:none" value="@item.PhotoUrl" />
+                                                    </a>
+                                                </td>
+                                                <td class="product-name" data-title="Product">
+                                                    <a href=@string.Format("/Home/ProductInfo?ProductId={0}",@item.ProductId) class="title">@item.Title</a>
+                                                    <input type="text" name="Title" style="display:none" value="@item.Title" />
+                                                </td>
+                                                <td class="product-quantity" data-title="Quantity">
+                                                    <div class="quantity">
+                                                        <div class="control">
+                                                            <a class="btn-number qtyminus quantity-minus" href="#">-</a>
+                                                            <input type="text" name="ProductNum" step="1" min="1" max="10" value="@item.ProductNum" title="Qty" class="input-qty qty" size="4">
+                                                            <a href="#" class="btn-number qtyplus quantity-plus">+</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="product-price" data-title="Price">
+                                                    <span class="woocommerce-Price-amount amount">
+                                                        <span class="woocommerce-Price-currencySymbol">
+                                                            &yen;
+                                                        </span>
+                                                        @item.Price.ToString("#0.00")
+                                                        <input name="Price" type="text" value="@item.Price" style="display:none" />
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+
+                                <div class="control-cart">
+                                    <input type="submit" class="button btn-continue-shopping" value="去结算" />
+                                </div>
+                            </form>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

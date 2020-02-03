@@ -1,0 +1,125 @@
+﻿
+<div class="site-content">
+    <main class="site-main  main-container no-sidebar">
+        <div class="container">
+            <div class="breadcrumb-trail breadcrumbs">
+                <ul class="trail-items breadcrumb">
+                    <li class="trail-item trail-begin">
+                        <a href="#">首页</a>
+                    </li>
+                    <li class="trail-item trail-end active">
+                        核对订单
+                    </li>
+                </ul>
+            </div>
+            <div id="seat-1">
+                <div class="container">
+                    <div class="row">
+                        <ul id="progressbar">
+                            <li class="active">我的购物车</li>
+                            <li class="active">填写核对订单信息</li>
+                            <li class="">成功提交订单</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <form action="~/Car/SubmitOrder" class="cart-form" method="post">
+                    <div class="list-group radio col-sm-12">
+                        <h3 class="custom_blog_title">
+                            <i class="fa fa-truck"></i>&nbsp;&nbsp;收货地址
+                        </h3>
+                        <a href="#" class="list-group-item">
+                            <i class="iconfont">&#xe6b9;</i>选择地址
+                        </a>
+                        @foreach (var item in ViewData["Delivery"] as IEnumerable<Delivery>)
+                        {
+                            <a href="#" class="list-group-item">
+                                <label>
+                                    <input type="radio" name="DeliveryId" id="optionsRadios1" value="@item.DeliveryId" checked>
+                                    <span class="username">@item.Consignee</span><span class="phone">@item.Phone</span><span class="address">@item.Complete</span>
+                                </label>
+                            </a>
+                        }
+                        <span class="remarks">备注：<input type="text" class="form-control" name="Remark" rows="3" /> @*<textarea class="form-control" rows="3"></textarea>*@</span>
+
+                    </div>
+                    <div class="main-content-cart main-content col-sm-12" id="order-info1">
+                        <div class="page-main-content">
+                            <div class="shoppingcart-content">
+                                <h3 class="custom_blog_title">
+                                    <i class="fa fa-tags"></i>&nbsp;&nbsp;订单信息
+                                </h3>
+
+                                <table class="shop_table">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-remove"></th>
+                                            <th class="product-thumbnail"></th>
+                                            <th class="product-name"></th>
+                                            <th class="product-price"></th>
+                                            <th class="product-quantity"></th>
+                                            <th class="product-subtotal"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr class="cart_item">
+                                                <input type="text" name="ProductId" style="display:none" value="@item.ProductId" />
+                                                <td class="product-remove">
+                                                </td>
+                                                <td class="product-thumbnail">
+
+                                                    <img src=@string.Format("/images/{0}",@item.PhotoUrl) alt="img"
+                                                         class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
+                                                    <input type="text" name="PhotoUrl" style="display:none" value="@item.PhotoUrl" />
+
+                                                </td>
+                                                <td class="product-name" data-title="Product">
+                                                    <span class="title">@item.Title</span>
+                                                    <input type="text" name="Title" style="display:none" value="@item.Title" />
+                                                </td>
+                                                <td class="product-piece" data-title="Price">
+                                                    <span class="piece">@item.ProductNum 件</span>
+                                                    <input type="text" name="ProductNum" style="display:none" value="@item.ProductNum" />
+                                                </td>
+                                                <td class="product-price" data-title="Price">
+                                                    <span class="woocommerce-Price-amount amount">
+                                                        <span class="woocommerce-Price-currencySymbol">
+                                                            &yen;
+                                                        </span>
+                                                        @item.Price.ToString("#0.00")
+                                                        <input name="Price" type="text" value="@item.Price" style="display:none" />
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        }
+                                        <tr>
+                                            <td class="actions">
+                                                <div class="order-total">
+                                                    <span class="title">
+                                                        总计:
+                                                    </span>
+                                                    <span class="total-price">
+                                                        &yen;@ViewBag.Total.ToString("#0.00")
+                                                        <input name="Total" type="text" value="@ViewBag.Total" style="display:none" />
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="control-cart">
+                                    <input type="submit" class="button btn-cart-to-checkout" value="提交订单" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>

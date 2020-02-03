@@ -1,0 +1,41 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Change商城注册</title>
+    <link rel="stylesheet" href="~/css/register.css">
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/layui/layui/layui.js"></script>
+</head>
+<body class="login-bg">
+    <div class="login layui-anim layui-anim-up" id="container">
+        <div class="message">注册 CHANGE</div>
+        <div id="darkbannerwrap"></div>
+        <form method="post" class="layui-form" action="~/Login/Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input name="UserName" placeholder="登录名" type="text" lay-verify="required" class="layui-input">
+            <hr class="hr15">
+            <input name="Pwd" lay-verify="required" placeholder="密码" type="password" class="layui-input">
+
+            <hr class="hr15">
+            <input name="Email" placeholder="邮箱" type="text" lay-verify="required" class="layui-input">
+
+            <hr class="hr15">
+            <input name="Nick" placeholder="昵称" type="text" lay-verify="required" class="layui-input">
+            <hr class="hr15">
+            <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+            <hr class="hr20">
+        </form>
+    </div>
+</body>
+</html>
+
+
+

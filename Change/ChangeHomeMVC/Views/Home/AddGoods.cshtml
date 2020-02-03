@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewData["Title"] = "上架商品";
+}
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <form class="" action="/Home/AddGoods" method="post">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        商品名
+                    </label>
+                    <div class="layui-input-block lafite_width_30">
+                        <input type="text" name="Title" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        市场价格
+                    </label>
+                    <div class="layui-input-block lafite_width_30">
+                        <input type="text" name="MarketPrice" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        本站价格
+                    </label>
+                    <div class="layui-input-block lafite_width_30">
+                        <input type="text" name="Price" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        库存
+                    </label>
+                    <div class="layui-input-block lafite_width_30">
+                        <input type="text" name="Stock" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">
+                            商品分类
+                        </label>
+                        <div class="layui-input-block">
+                            <select name="CategoryId" lay-verify="required" class="form-control">
+                                @foreach (var item in Model)
+                                {
+                                    <option value="@item.CategoryId">@item.CateName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        内容描述
+                    </label>
+                    <div class="layui-input-block" onmouseout="getContent()">
+                        @*<textarea id="layeditDemo"></textarea>*@
+                        <script id="editor" type="text/plain" style="width: 100%; height: 200px;">
+                        </script>
+                        <textarea style="visibility: hidden; height: 0px" name="Content" id="procontent"></textarea>
+                        <script>
+                            //向编辑器添加内容
+                            var ue = UE.getEditor('editor');
+                            //获取编辑器内容，赋值给textarea
+                            function getContent() {
+                                document.getElementById("procontent").value = ue.getContent();
+                            }
+                        </script>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="lafite-layui-btn lafite_margin_left_20" lay-submit lay-filter="formDemo" onclick="returnGoodsManage()">返回</button>
+
+                        <input type="submit" class="lafite-layui-btn2 lafite_margin_left_20px" value="保存商品" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+@section Scripts{
+    <script>
+        function returnGoodsManage() {
+            window.history.back(-1);
+        }
+    </script>
+}

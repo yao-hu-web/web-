@@ -1,0 +1,128 @@
+﻿
+    <div class="site-content">
+        <main class="site-main  main-container no-sidebar">
+            <div class="container">
+                <div class="breadcrumb-trail breadcrumbs">
+                    <ul class="trail-items breadcrumb">
+                        <li class="trail-item trail-begin">
+                            <a href="#">首页</a>
+                        </li>
+                        <li class="trail-item trail-end active">
+                            支付订单
+                        </li>
+                    </ul>
+                </div>
+                <div id="seat-1">
+                    <div class="container">
+                        <div class="row">
+                            <ul id="progressbar">
+                                <li class="active">我的购物车</li>
+                                <li class="active">填写核对订单信息</li>
+                                <li class="active">成功提交订单</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="list-group col-sm-12">
+                        <h3 class="custom_blog_title">
+                            <span class="fa fa-check-circle"></span>&nbsp;&nbsp;订单提交成功，实付金额&yen;@ViewBag.Total.ToString("#0.00")&nbsp;元
+                        </h3>
+                        <h6>
+                            <span>订单号：@ViewBag.OrdersId</span>;&nbsp;&nbsp;请您在一小时内完成支付,否则订单会取消
+                        </h6>
+
+
+                    </div>
+                    <div class="main-content-cart main-content col-sm-12" id="order-info1">
+                        <div class="page-main-content">
+                            <div class="shoppingcart-content radio">
+                                <h3 class="custom_blog_title">
+                                    <i class="fa fa-paypal"></i>&nbsp;&nbsp;在线支付
+                                </h3>
+                                <form action="~/Car/OrderPay?OrdersId=@ViewBag.OrdersId" method="get">
+                                    <table class="shop_table">
+                                        <input type="text" name="OrdersId" style="display:none" value="@ViewBag.OrdersId" />
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                                        <img src="/images/工商银行.png" alt="" width="25">&nbsp;&nbsp;<span class="bank-name">中国工商银行</span>
+                                                    </label>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option2">
+                                                        <img src="/images/建设银行.png" alt="" width="25">&nbsp;&nbsp;<span class="bank-name">中国建设银行</span>
+                                                    </label>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option3">
+                                                        <img src="/images/交通银行.png" alt="" width="25">&nbsp;&nbsp;<span class="bank-name">交通银行</span>
+                                                    </label>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option4">
+                                                        <img src="/images/农业银行.png" alt="" width="25">&nbsp;&nbsp;<span class="bank-name">中国农业银行</span>
+                                                    </label>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option5">
+                                                        <img src="/images/兴业银行.png" alt="" width="25">&nbsp;&nbsp;<span class="bank-name">兴业银行</span>
+                                                    </label>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option6">
+                                                        <img src="/images/邮政银行.png" alt="" width="25">&nbsp;&nbsp;<span class="bank-name">中国邮政银行</span>
+                                                    </label>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option7">
+                                                        <img src="/images/招商银行.png" alt="" width="25">&nbsp;&nbsp;<span class="bank-name">招商银行</span>
+                                                    </label>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option8">
+                                                        <img src="/images/中国银行.png" alt="" width="25">&nbsp;&nbsp;<span class="bank-name">中国银行</span>
+                                                    </label>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <div class="control-cart">
+                                        <input type="submit" class="button btn-cart-to-checkout" value="立即支付" />
+                                        
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>

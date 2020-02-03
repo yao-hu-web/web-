@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewData["Title"] = "商品图片管理";
+}
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <form class="layui-form" action="/Home/GoodsPic" method="POST" enctype="multipart/form-data">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        所属商品:
+                    </label>
+                    <div class="layui-input-block lafite_width_30">
+                        <input type="text" name="Title" value="@ViewBag.ProductName" readonly required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                        <input type="text" name="ProductId" style="opacity: 0;" value="@ViewBag.ProductId">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="position: relative;">
+                    <label class="layui-form-label">
+                        <img id="img" class="layui-form-label lafite_margin_left_20px" src="~/images/uploading.jpg" style="width: 200px;height: 180px" />
+                        <input multiple onchange="imgChange(this)" type="file" name="fileInput" id="FileUpload" style="width: 200px;height: 190px;opacity:0;position:absolute;left:50px;">
+                        <input type="submit" style="position:absolute;top:200px;left:100px;" class="layui-btn lafite_btn lafite_margin_left_40px" value="点击上传">
+                    </label>
+                    <script>
+                        function imgChange(file) {
+                            var dFile = document.getElementById("FileUpload");
+                            var dImg = document.getElementById("img");
+                            //判断是否有文件
+                            if (file.files && file.files[0]) {
+                                //创建用来读取此文件的对象
+                                var reader = new FileReader();
+                                //使用该对象读取file文件
+                                reader.readAsDataURL(file.files[0]);
+                                //读取文件成功后执行的方法函数
+                                reader.onload = function (evt) {
+                                    //alert(evt.target.result);
+                                    //选择所要显示图片的img，要赋值给img的src就是e中target下result里面
+                                    dImg.src = evt.target.result;
+                                }
+                            }
+                        }
+                    </script>
+                </div>
+
+            </form>
+            <div class="layui-card-body layui-table-body layui-table-main">
+                <table class="layui-table layui-form">
+                    <thead>
+                        <tr>
+                            <th>图片</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src=@string.Format("/images/{0}",@item.PhotoUrl) />
+                                </td>
+                                <td class="td-manage lafite_table_a_blue">
+                                    <a class="lafite_margin_left_10px" title="删除" href="/Home/DelGoodsPic?PhotoId=@item.PhotoId&ProductId=@ViewBag.ProductId&Title=@ViewBag.ProductName">
+                                        删除
+                                    </a>
+
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="lafite-layui-btn lafite_margin_left_20" lay-submit lay-filter="formDemo" onclick="returnGoodsPic()">返回</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+@section Scripts{
+    <script>
+        function returnGoodsPic() {
+            window.location.href = "/Home/GoodsManage";
+        }
+    </script>
+}

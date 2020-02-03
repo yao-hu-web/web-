@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewData["Title"] = "订单详情";
+}
+
+
+<div class="layui-card-body layui-table-body layui-table-main">
+    <table class="layui-table layui-form">
+        <tr>
+            <td>订单号</td>
+            <td>@ViewData["OrdersId"]</td>
+        </tr>
+        <tr>
+            <td>下单用户</td>
+            <td>@ViewData["UserName"]</td>
+        </tr>
+        <tr>
+            <td>下单时间</td>
+            <td>@ViewData["Orderdate"]</td>
+        </tr>
+        <tr>
+            <td>订单总额</td>
+            <td>&yen;&nbsp;@ViewData["Total"]</td>
+        </tr>
+        <tr>
+            <td>收货人</td>
+            <td>@ViewData["Consignee"]</td>
+        </tr>
+        <tr>
+            <td>收货地址</td>
+            <td>@ViewData["Complete"]</td>
+        </tr>
+        <tr>
+            <td>收货人联系电话</td>
+            <td>@ViewData["Phone"]</td>
+        </tr>
+        <tr>
+            <td>订单状态</td>
+            @if (ViewData["States"].ToString() == "1")
+            {
+                <td>已付款</td>
+            }
+            else if (ViewData["States"].ToString() == "2")
+            {
+                <td>已发货</td>
+            }
+            else if (ViewData["States"].ToString() == "3")
+            {
+                <td>已收货</td>
+            }
+            else if (ViewData["States"].ToString() == "4")
+            {
+                <td>已评价</td>
+            }
+            else
+            {
+                <td>未付款</td>
+            }
+        </tr>
+        <tr>
+            <td>备注</td>
+            @if (@ViewData["Remark"].ToString() == "")
+            {
+                <td>无</td>
+            }
+            else
+            {
+                <td>@ViewData["Remark"]</td>
+            }
+
+        </tr>
+
+    </table>
+    <div class="main-content-cart main-content col-sm-12" id="order-info1">
+        <div class="page-main-content">
+            <div class="shoppingcart-content">
+                <h3 class="custom_blog_title">
+                    <i class="iconfont fa fa-tags" style="font-size:20px">&#xe705;</i>&nbsp;&nbsp;订单明细
+                </h3>
+                <form action="#" class="cart-form">
+                    <table class="shop_table">
+                        <thead>
+                            <tr>
+                                <th class="product-thumbnail"></th>
+                                <th class="product-name"></th>
+                                <th class="product-price"></th>
+                                <th class="product-quantity"></th>
+                                <th class="product-subtotal"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="cart_item">
+                                    <td class="product-thumbnail">                                        
+                                            <img src=@string.Format("/images/{0}",@item.PhotoUrl) alt="img" style="height:100px;width:100px"
+                                                 class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">                                       
+                                    </td>
+                                    <td class="product-name" data-title="Product">
+                                        @item.Title
+                                    </td>
+                                    <td class="product-piece" data-title="Price">
+                                        <span class="piece">@item.Quantity &nbsp;件</span>
+                                    </td>
+                                    <td class="product-price" data-title="Price">
+                                        <span class="woocommerce-Price-amount amount">
+                                            <span class="woocommerce-Price-currencySymbol">
+                                                &yen;
+                                            </span>
+                                            @item.Price.ToString("#0.00")
+                                        </span>
+                                    </td>
+                                </tr>
+                            }                            
+                        </tbody>
+                    </table>
+                </form>
+                <div class="control-cart">
+                    <button class="button btn-cart-to-checkout" onclick="returnOrder()">
+                        返回订单
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        function returnOrder() {
+            window.history.back(-1);
+        }
+    </script>
+}

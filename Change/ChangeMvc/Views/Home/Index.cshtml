@@ -1,0 +1,530 @@
+﻿@{
+    ViewData["Title"] = "首页";
+}
+
+
+<!-- 缩放显示 -->
+<div class="header-device-mobile">
+    <div class="wapper">
+        <!-- LOGO -->
+        <div class="item mobile-logo">
+            <div class="logo">
+                <a href="#">
+                    <img src="~/images/logo.png" alt="img">
+                </a>
+            </div>
+        </div>
+        <!-- 搜索 -->
+        <div class="item item mobile-search-box has-sub">
+            <a href="#">
+                <span class="icon">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </span>
+            </a>
+            <div class="block-sub">
+                <a href="#" class="close">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+                <div class="header-searchform-box">
+                    <form class="header-searchform" action="~/Home/ProductSearch" method="get">
+                        <div class="searchform-wrap">
+                            <input type="text" name="Title" class="search-input" placeholder="搜索">
+                            <input type="submit" class="submit button" value="Search">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- 我的 -->
+        <div class="item mobile-settings-box has-sub">
+            <a href="#">
+                <span class="icon">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </span>
+            </a>
+            <div class="block-sub">
+                <a href="#" class="close">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+                <div class="block-sub-item">
+                    <h5 class="block-item-title">我的</h5>
+                    <form class="currency-form tanajil-language">
+                        <ul class="tanajil-language-wrap">
+                            <li>
+                                <a href="#">
+                                    <i class="iconfont">&#xe698;</i>购物车
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="iconfont">&#xe6a0;</i>收藏夹
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <a href="#">
+                                        <i class="iconfont">&#xe6ba;</i>登录后台
+                                    </a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 菜单按钮 -->
+        <div class="item menu-bar">
+            <a class=" mobile-navigation  menu-toggle" href="#">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+    </div>
+</div>
+<!---------------------------------------------------------------轮播---------------------------------------------->
+<section>
+    <div class="container">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="~/images/lb1.jpg" alt="...">
+                </div>
+                <div class="item">
+                    <img src="~/images/lb2.jpg" alt="...">
+                </div>
+                <div class="item">
+                    <img src="~/images/lb3.jpg" alt="...">
+                </div>
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</section>
+<!---------------------------------------------------------------服饰区3---------------------------------------------->
+<div id="container">
+    @{
+        @if ((@ViewData["CateNameFZ"] as IEnumerable<HomeInfo>).Count() > 0)
+        {
+            <section class="clothing" id="clothing">
+                <div class="container">
+                    <div class="big-title">
+                        <h2>服饰区</h2>
+                    </div>
+                    <div class="row ry">
+
+                        @foreach (var item in @ViewData["CateNameFZ"] as IEnumerable<HomeInfo>)
+                        {
+                            <a href=@string.Format("/Home/ProductInfo?ProductId={0}",@item.ProductId)>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 ">
+                                    <div class="clothing-box">
+                                        <div class="listing-container">
+                                            <div class="listing-image">
+                                                <img src=@string.Format("/images/{0}",@item.PhotoUrl) alt="">
+                                            </div>
+                                            <div class="listing-content">
+                                                <div class="inner">
+                                                    <a href="#" class="btn-main btn-effect pull-right" v-on:click="reload(@item.ProductId) title="收藏">
+                                                        <i class="iconfont">&#xe6a0;</i>
+                                                    </a>
+                                                    <a href=@string.Format("/Car/Details?ProductId={0}",@item.ProductId) class="btn-main btn-effect" title="收藏加入购物车">
+                                                        <i class="iconfont">&#xe698;</i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="price"><span class="shangyin">￥@item.Price.ToString("#0.00") &nbsp; @item.Title</span></div>
+                                </div>
+                            </a>
+
+                        }
+                    </div>
+                    <a href=@string.Format("/Home/ProductCategory/?CategoryId=3&CategoryName=服饰区&ParentId=3") class="read-more">
+                        More <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </section>
+        }
+    }
+    <!---------------------------------------------------------------数码区4---------------------------------------------->
+    @{
+        <section class="clothing" id="digital">
+            <div class="container">
+                <div class="big-title">
+                    <h2>数码区</h2>
+                </div>
+                <div class="row ry">
+                    @foreach (var item in @ViewData["CateNameSM2"] as IEnumerable<HomeInfo>)
+                    {
+                        <a href=@string.Format("/Home/ProductInfo?ProductId={0}",@item.ProductId)>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                <div class="clothing-box">
+                                    <div class="listing-container">
+                                        <div class="listing-image">
+                                            <img src=@string.Format("/images/{0}",@item.PhotoUrl) alt="">
+                                        </div>
+                                        <div class="listing-content">
+                                            <div class="inner">
+                                                <a href="#" class="btn-main btn-effect pull-right" title="收藏">
+                                                    <i class="iconfont">&#xe6a0;</i>
+                                                </a>
+                                                <a href=@string.Format("/Car/Details?ProductId={0}",@item.ProductId) class="btn-main btn-effect" title="收藏加入购物车">
+                                                    <i class="iconfont">&#xe698;</i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="price"><span class="shangyin">￥@item.Price.ToString("#0.00") &nbsp; @item.Title</span></div>
+                            </div>
+                        </a>
+                    }
+                </div>
+                <div class="row ry">
+                    @foreach (var item in @ViewData["CateNameSM4"] as IEnumerable<HomeInfo>)
+                    {
+                        <a href=@string.Format("/Home/ProductInfo?ProductId={0}",@item.ProductId)>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 ">
+                                <div class="clothing-box">
+                                    <div class="listing-container">
+                                        <div class="listing-image">
+                                            <img src=@string.Format("/images/{0}",@item.PhotoUrl) alt="">
+                                        </div>
+                                        <div class="listing-content">
+                                            <div class="inner">
+                                                <a href="#" class="btn-main btn-effect pull-right" title="收藏">
+                                                    <i class="iconfont">&#xe6a0;</i>
+                                                </a>
+                                                <a href=@string.Format("/Car/Details?ProductId={0}",@item.ProductId) class="btn-main btn-effect" title="收藏加入购物车">
+                                                    <i class="iconfont">&#xe698;</i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="price"><span class="shangyin">￥@item.Price.ToString("#0.00") &nbsp; @item.Title</span></div>
+                            </div>
+                        </a>
+
+                    }
+                </div>
+                <a href=@string.Format("/Home/ProductCategory/?CategoryId=4&CategoryName=数码区&ParentId=4") class="read-more">
+                    More <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+        </section>
+    }
+    <!---------------------------------------------------------------家居区6---------------------------------------------->
+    <section class="clothing" id="household">
+        <div class="container">
+            <div class="big-title">
+                <h2>家居区</h2>
+            </div>
+            <div class="row ry">
+                @foreach (var item in @ViewData["CateNameJJ"] as IEnumerable<HomeInfo>)
+                {
+                    <a href=@string.Format("/Home/ProductInfo?ProductId={0}",@item.ProductId)>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="clothing-box">
+                                <div class="listing-container">
+                                    <div class="listing-image">
+                                        <img src=@string.Format("/images/{0}",@item.PhotoUrl) alt="">
+                                    </div>
+                                    <div class="listing-content">
+                                        <div class="inner">
+                                            <a href="#" class="btn-main btn-effect pull-right" title="收藏">
+                                                <i class="iconfont">&#xe6a0;</i>
+                                            </a>
+                                            <a href=@string.Format("/Car/Details?ProductId={0}",@item.ProductId) class="btn-main btn-effect" title="收藏加入购物车">
+                                                <i class="iconfont">&#xe698;</i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="price"><span class="shangyin">￥@item.Price.ToString("#0.00") &nbsp; @item.Title</span></div>
+                        </div>
+                    </a>
+
+                }
+            </div>
+            <a href=@string.Format("/Home/ProductCategory/?CategoryId=6&CategoryName=家居区&ParentId=6") class="read-more">
+                More <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </section>
+    <!---------------------------------------------------------------美妆区7---------------------------------------------->
+    <section class="clothing" id="makeup">
+        <div class="container">
+            <div class="big-title">
+                <h2>美妆区</h2>
+            </div>
+            <div class="row ry">
+                @foreach (var item in @ViewData["CateNameMZ2"] as IEnumerable<HomeInfo>)
+                {
+                    <a href=@string.Format("/Home/ProductInfo?ProductId={0}",@item.ProductId)>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="clothing-box">
+                                <div class="listing-container">
+                                    <div class="listing-image">
+                                        <img src=@string.Format("/images/{0}",@item.PhotoUrl) alt="">
+                                    </div>
+                                    <div class="listing-content">
+                                        <div class="inner">
+                                            <a href="#" class="btn-main btn-effect pull-right" title="收藏">
+                                                <i class="iconfont">&#xe6a0;</i>
+                                            </a>
+                                            <a href=@string.Format("/Car/Details?ProductId={0}",@item.ProductId) class="btn-main btn-effect" title="收藏加入购物车">
+                                                <i class="iconfont">&#xe698;</i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="price"><span class="shangyin">￥@item.Price.ToString("#0.00") &nbsp; @item.Title</span></div>
+                        </div>
+                    </a>
+                }
+            </div>
+            <div class="row ry">
+                @foreach (var item in @ViewData["CateNameMZ1"] as IEnumerable<HomeInfo>)
+                {
+                    <a href=@string.Format("/Home/ProductInfo?ProductId={0}",@item.ProductId)>
+                        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="clothing-box">
+                                <div class="listing-container">
+                                    <div class="listing-image">
+                                        <img src=@string.Format("/images/{0}",@item.PhotoUrl) alt="">
+                                    </div>
+                                    <div class="listing-content">
+                                        <div class="inner">
+                                            <a href="#" class="btn-main btn-effect pull-right" title="收藏">
+                                                <i class="iconfont">&#xe6a0;</i>
+                                            </a>
+                                            <a href=@string.Format("/Car/Details?ProductId={0}",@item.ProductId) class="btn-main btn-effect" title="收藏加入购物车">
+                                                <i class="iconfont">&#xe698;</i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="price"><span class="shangyin">￥@item.Price.ToString("#0.00") &nbsp; @item.Title</span></div>
+                        </div>
+                    </a>
+
+                }
+            </div>
+            <a href=@string.Format("/Home/ProductCategory/?CategoryId=7&CategoryName=美妆区&ParentId=7") class="read-more">
+                More <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </section>
+    <!---------------------------------------------------------------美食区5---------------------------------------------->
+    <section class="clothing" id="delicacy">
+        <div class="container">
+            <div class="big-title">
+                <h2>美食区</h2>
+            </div>
+            <div class="row ry">
+                @foreach (var item in @ViewData["CateNameMS"] as IEnumerable<HomeInfo>)
+                {
+                    <a href=@string.Format("/Home/ProductInfo?ProductId={0}",@item.ProductId)>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="clothing-box">
+                                <div class="listing-container">
+                                    <div class="listing-image">
+                                        <img src=@string.Format("/images/{0}",@item.PhotoUrl) alt="">
+                                    </div>
+                                    <div class="listing-content">
+                                        <div class="inner">
+                                            <a href="#" class="btn-main btn-effect pull-right" title="收藏">
+                                                <i class="iconfont">&#xe6a0;</i>
+                                            </a>
+                                            <a href=@string.Format("/Car/Details?ProductId={0}",@item.ProductId) class="btn-main btn-effect" title="收藏加入购物车">
+                                                <i class="iconfont">&#xe698;</i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="price"><span class="shangyin">￥@item.Price.ToString("#0.00") &nbsp; @item.Title</span></div>
+                        </div>
+                    </a>
+
+                }
+            </div>
+            <a href=@string.Format("/Home/ProductCategory/?CategoryId=5&CategoryName=美食区&ParentId=5") class="read-more">
+                More <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </section>
+    <!---------------------------------------------------------------母婴区8---------------------------------------------->
+    <section class="clothing" id="motherchild">
+        <div class="container">
+            <div class="big-title">
+                <h2>母婴区</h2>
+            </div>
+            <div class="row ry">
+                @foreach (var item in @ViewData["CateNameMY1"] as IEnumerable<HomeInfo>)
+                {
+                    <a href=@string.Format("/Home/ProductInfo?ProductId={0}",@item.ProductId)>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="clothing-box">
+                                <div class="listing-container">
+                                    <div class="listing-image">
+                                        <img src=@string.Format("/images/{0}",@item.PhotoUrl) alt="">
+                                    </div>
+                                    <div class="listing-content">
+                                        <div class="inner">
+                                            <a href="#" class="btn-main btn-effect pull-right" title="收藏">
+                                                <i class="iconfont">&#xe6a0;</i>
+                                            </a>
+                                            <a href=@string.Format("/Car/Details?ProductId={0}",@item.ProductId) class="btn-main btn-effect" title="收藏加入购物车">
+                                                <i class="iconfont">&#xe698;</i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="price"><span class="shangyin">￥@item.Price.ToString("#0.00") &nbsp; @item.Title</span></div>
+                        </div>
+                    </a>
+                }
+            </div>
+            <div class="row ry">
+                @foreach (var item in @ViewData["CateNameMY2"] as IEnumerable<HomeInfo>)
+                {
+                    <a href=@string.Format("/Home/ProductInfo?ProductId={0}",@item.ProductId)>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="clothing-box">
+                                <div class="listing-container">
+                                    <div class="listing-image">
+                                        <img src=@string.Format("/images/{0}",@item.PhotoUrl) alt="">
+                                    </div>
+                                    <div class="listing-content">
+                                        <div class="inner">
+                                            <a href="#" class="btn-main btn-effect pull-right" title="收藏">
+                                                <i class="iconfont">&#xe6a0;</i>
+                                            </a>
+                                            <a href=@string.Format("/Car/Details?ProductId={0}",@item.ProductId) class="btn-main btn-effect" title="收藏加入购物车">
+                                                <i class="iconfont">&#xe698;</i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="price"><span class="shangyin">￥@item.Price.ToString("#0.00") &nbsp; @item.Title</span></div>
+                        </div>
+                    </a>
+                }
+            </div>
+            <a href=@string.Format("/Home/ProductCategory/?CategoryId=8&CategoryName=母婴区&ParentId=8") class="read-more">
+                More <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </section>
+</div>
+<div class="menu">
+    <div class="icon" tabindex="1">
+        <a href="#top" data-toggle="tooltip" data-placement="right" title="返回顶部">
+            <img src="~/images/顶部.png" alt=""
+                 width="30" height="30">
+        </a>
+    </div>
+    <div class="icon" tabindex="2">
+        <a href="#clothing" data-toggle="tooltip" data-placement="right" title="服装">
+            <img src="~/images/服装.png" alt=""
+                 width="30" height="30">
+        </a>
+    </div>
+    <div class="icon" tabindex="3">
+        <a href="#digital" data-toggle="tooltip" data-placement="right" title="数码">
+            <img src="~/images/数码.png" alt=""
+                 width="30" height="30">
+        </a>
+    </div>
+    <div class="icon" tabindex="4">
+        <a href="#household" data-toggle="tooltip" data-placement="right" title="家居">
+            <img src="~/images/家居.png" alt=""
+                 width="30" height="30">
+        </a>
+    </div>
+    <div class="icon" tabindex="5">
+        <a href="#makeup" data-toggle="tooltip" data-placement="right" title="美妆">
+            <img src="~/images/美妆.png" alt=""
+                 width="35" height="35">
+        </a>
+    </div>
+    <div class="icon" tabindex="6">
+        <a href="#delicacy" data-toggle="tooltip" data-placement="right" title="美食">
+            <img src="~/images/美食.png" alt=""
+                 width="31" height="31">
+        </a>
+    </div>
+    <div class="icon" tabindex="7">
+        <a href="#motherchild" data-toggle="tooltip" data-placement="right" title="母婴">
+            <img src="~/images/母婴.png"
+                 alt="" width="40" height="30">
+        </a>
+    </div>
+    <div class="icon" tabindex="8">
+        <a href="#bottom" data-toggle="tooltip" data-placement="right" title="返回底部">
+            <img src="~/images/底部.png" alt=""
+                 width="32" height="32">
+        </a>
+    </div>
+</div>
+
+@section Scripts{
+    @*<script>
+        var vue = new Vue({
+            el: "#container",//挂载到哪个容器
+            data: {
+                item: { "FavoriteId": "", "ProductId": "", "UsersId": "" },
+                items: [
+                    { "FavoriteId": "", "ProductId": "", "UsersId": "" }
+                ],
+            },
+            methods: {
+                reload: function (obj) {
+                   
+                    //ajax调用数据
+                    $.ajax({
+                        url: "/Default/GetDataByPage",
+                        data: { pageIndex: vue.pageindex },
+                        type: "get",
+                        dataType: "json",
+                        success: function (res) {
+                            vue.items = res.rows;
+                            vue.pageindex = res.pageindex;
+                            vue.pagenum = res.pagenum;
+                        },
+                        error: function () {
+                            alert("调用错误");
+                        }
+                    })
+                }
+
+            }
+        });*@
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    @*</script>*@
+}
